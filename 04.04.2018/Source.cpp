@@ -4,6 +4,12 @@
 #include <iostream>
 #include <string.h>
 
+struct k
+{
+	int *mas;
+	double *mas1;
+};
+
 struct date
 {
 	int year;
@@ -18,7 +24,6 @@ void main()
 	int nz;
 	do
 	{
-		system("pause");
 		printf("Enter number nz: ");
 		scanf("%d", &nz);
 		cin.get();
@@ -195,7 +200,7 @@ void main()
 				}
 			}
 		}
-		
+
 		/* Дан символьный файл f. Записать в файл g компоненты файла f в обратном порядке*/
 		else if (nz == 6)
 		{
@@ -204,15 +209,44 @@ void main()
 			if ((file = fopen("time", "r")) != NULL)
 			{
 				char r;
-				while (r!='\n')
+				while (r != '\n')
 				{
 					fgetc(file);
 				}
 				if ((file = fopen("newtime", "w")) != NULL)
 				{
-					fprintf(nfile)
+					fprintf(nfile, " ");
 				}
 			}
 		}
+
+		/* Файл состоит из k компонент структуры, где каждая компонента содержит две матрицы: первая размерности m x n, вторая размерности m x l.
+		Получить k произведений соответствующих матриц и записать их во второй файл. Вывести на экран содержимое первого и второго файлов.*/
+		else if (nz == 7)
+		{
+			k k[10];
+			int m, n, l;
+			printf("Enter count stolbcov: ");
+			scanf("%d", &m);
+			printf("Enter count strok: ");
+			scanf("%d", &n);
+			printf("Enter count strok 2 matricy: ");
+			scanf("%d", &l);
+
+			for (int i = 0; i < 10; i++)
+			{
+				k[i].mas = (int*)malloc(m*n * sizeof(int));
+				for (int j = 0;j < m*n;j++)
+				{
+					k[j].mas[i] = 1 + rand() % 49;
+				}
+				k[i].mas1 = (double*)malloc(m*l * sizeof(double));
+				for (int j = 0;j < m*l;j++)
+				{
+					k[j].mas1[i] = 1.5 + rand() % 48 / 1.1 + rand() % 48;
+				}
+			}
+		}
+
 	} while (nz != 0);
 }
